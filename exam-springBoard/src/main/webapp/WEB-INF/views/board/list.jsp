@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<meta charset="UTF-8">
 		<title>mini 게시판</title>
 		<style type="text/css">
@@ -22,7 +23,7 @@
 			<hr>
 			
 			<section id="container">
-				<form role="form" method="get" action="/board/write">
+				<form role="form" method="post" action="/board/write">
 					<table>
 						<tr><th>글 번호</th><th>제목</th><th>작성자</th><th>등록일</th></tr>
 						
@@ -42,7 +43,7 @@
 						자바에서 for문이랑 비슷하다고 생각하면 됨. 여기서 ${list}는 BoardController에서 이름을 list로 정한 service.list()를 가져온거임. -->
 						
 					</table>
-					
+					<hr>
 					<div class="search">
 					    <select name="searchType">
 					      <option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
@@ -81,8 +82,10 @@
 					</div>
 					
 				</form>
+				
 			</section>
-			<hr>
+			
+			
 		</div>
 	</body>
 </html>

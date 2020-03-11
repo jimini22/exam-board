@@ -61,7 +61,7 @@
 							<tr>
 								<td>
 									<label for="bno">글 번호</label>
-									<input type="text" id="bno" name="bno" readonly value="${read.bno}"/>
+									<input type="text" id="bno" name="bno" value="${read.bno}"/>
 								</td>
 							</tr>	
 							<tr>
