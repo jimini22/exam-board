@@ -5,8 +5,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.ji.dao.BoardDAO;
+import org.ji.vo.SearchCriteria;
 import org.ji.vo.BoardVO;
-import org.ji.vo.Criteria;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,14 +23,15 @@ public class BoardServiceImpl implements BoardService {
 	
 	// 게시물 목록 조회
 	@Override
-	public List<BoardVO> list(Criteria cri) throws Exception {
-		return dao.list(cri);
+	public List<BoardVO> list(SearchCriteria scri) throws Exception {
+		return dao.list(scri);
 			//dao에 있는 list()함수를 호출해서 반환하겠다
 	}
 	
 	// 게시물 총 갯수
-	public int listCount() throws Exception {
-		return dao.listCount();
+	@Override
+	public int listCount(SearchCriteria scri) throws Exception {
+		return dao.listCount(scri);
 	}
 	
 	// 게시물 조회

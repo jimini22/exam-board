@@ -20,9 +20,10 @@
 					if(fn_valiChk()){
 						return false;
 					}
-					formObj.attr("action", "/board/update");
-					formObj.attr("method", "post");
-					formObj.submit();
+						formObj.attr("action", "/board/update");
+						formObj.attr("method", "post");
+						formObj.submit();
+					
 				})
 			})
 			

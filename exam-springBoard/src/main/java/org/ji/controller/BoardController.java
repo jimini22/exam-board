@@ -2,14 +2,15 @@ package org.ji.controller;
 
 import javax.inject.Inject;
 
+import org.ji.vo.SearchCriteria;
 import org.ji.service.BoardService;
 import org.ji.vo.BoardVO;
-import org.ji.vo.Criteria;
 import org.ji.vo.PageMaker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -42,14 +43,14 @@ public class BoardController {
 	
 	// 게시판 목록 조회
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(Model model, Criteria cri) throws Exception {			//oracle(DB) > dao > service > controller로 가져온 데이터들을 model 이라는 그릇에 담을거임
+	public String list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {			//oracle(DB) > dao > service > controller로 가져온 데이터들을 model 이라는 그릇에 담을거임
 		logger.info("list");
 		
-		model.addAttribute("list", service.list(cri));		//service.list()에 담긴 데이터를 'list'라는 이름으로 담을거임
+		model.addAttribute("list", service.list(scri));		//service.list()에 담긴 데이터를 'list'라는 이름으로 담을거임
 		
 		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(service.listCount());
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(service.listCount(scri));
 		
 		model.addAttribute("pageMaker", pageMaker);
 		

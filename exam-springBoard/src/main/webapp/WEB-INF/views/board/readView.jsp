@@ -14,9 +14,13 @@
 				
 				// 수정 
 				$(".update_btn").on("click", function(){
-					formObj.attr("action", "/board/updateView");
-					formObj.attr("method", "post");
-					formObj.submit();				
+					
+					var updateYN = confirm("수정하시겠습니까?");
+					if(updateYN == true) {
+						formObj.attr("action", "/board/updateView");
+						formObj.attr("method", "get");
+						formObj.submit();
+					}
 				})
 				
 				// 삭제
