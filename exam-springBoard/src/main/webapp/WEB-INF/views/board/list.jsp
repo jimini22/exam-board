@@ -4,6 +4,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<!-- 합쳐지고 최소화된 최신 CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<!-- 부가적인 테마 -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+		<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<meta charset="UTF-8">
 		<title>mini 게시판</title>
@@ -44,14 +51,16 @@
 						
 					</table>
 					<hr>
-					<div class="search">
-					    <select name="searchType">
-					      <option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
-					      <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
-					      <option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
-					      <option value="w"<c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
-					      <option value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
-					    </select>
+					<div class="search row">
+						<div class="col-xs-2 col-sm-2">
+						    <select name="searchType" class="form-control">		<!-- *bootstrap* : "form-control"  -->
+						      <option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
+						      <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
+						      <option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
+						      <option value="w"<c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
+						      <option value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
+						    </select>
+					    </div>
 					
 					    <input type="text" name="keyword" id="keywordInput" value="${scri.keyword}"/>
 					
@@ -65,26 +74,25 @@
 					    </script>
 					</div>
 					
-					<div>
-					  <ul>
+					<div class="col-md-offset-3">
+					  <ul class="pagination">		<!-- *bootstrap* : "pagination" -->
 					    <c:if test="${pageMaker.prev}">
 					    	<li><a href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
-					    </c:if> 
+					    </c:if>
 					
 					    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-					    	<li><a href="list${pageMaker.makeSearch(idx)}">${idx}</a></li>
+					    	<li <c:out value="${pageMaker.cri.page == idx ? 'class=info' : ''}"/> ><a href="list${pageMaker.makeSearch(idx)}">${idx}</a></li>
 					    </c:forEach>
 					
 					    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 					    	<li><a href="list${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
-					    </c:if> 
+					    </c:if>
 					  </ul>
 					</div>
 					
 				</form>
 				
 			</section>
-			
 			
 		</div>
 	</body>
